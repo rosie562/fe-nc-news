@@ -1,11 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { getAllArticles } from "../api";
-import { Link } from "react-router-dom";
 import SingleArticle from "./SingleArticle";
 
-export default function Articles() {
+export default function Articles({ isLoading, setIsLoading }) {
   const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getAllArticles()
