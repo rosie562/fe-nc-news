@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getAllArticles } from "../api";
 import SingleArticle from "./SingleArticle";
 
