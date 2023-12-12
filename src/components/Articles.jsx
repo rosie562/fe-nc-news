@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllArticles } from "../api";
 import SingleArticle from "./SingleArticle";
+import { Link } from "react-router-dom";
 
 export default function Articles({ isLoading, setIsLoading }) {
   const [articles, setArticles] = useState([]);
@@ -8,6 +9,7 @@ export default function Articles({ isLoading, setIsLoading }) {
   useEffect(() => {
     getAllArticles()
       .then((articles) => {
+        console.log(articles);
         setIsLoading(false);
         setArticles(articles);
       })
@@ -20,12 +22,19 @@ export default function Articles({ isLoading, setIsLoading }) {
 
   return (
     <>
-      <section className="border p-4">
-        <h2 className="text-2xl font-bold mb-4">Articles:</h2>
-        <section className="grid grid-cols-1 gap-4">
+      <section>
+        <h2 className="text-3xl font-bold mb-4 ml-6 p-5">Articles:</h2>
+        <section className="grid grid-cols-1 gap-4 ">
           {articles.map((article) => (
-            <div className="border mt-3 mb-3" key={article.article_id}>
+            <div className="mt-3 mb-3 border" key={article.article_id}>
               <SingleArticle article={article} />
+              <div className="text-center">
+                <Link to={`/articles/${article.article_id}`}>
+                  <button className="border p-2 m-3 mb-5 text-1xl text-center">
+                    Go to Article
+                  </button>
+                </Link>
+              </div>
             </div>
           ))}
         </section>
