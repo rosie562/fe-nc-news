@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllArticles } from "../api";
 import SingleArticle from "./SingleArticle";
 import { Link } from "react-router-dom";
+import ArticleCard from "./ArticleCard"
 
 export default function Articles({ isLoading, setIsLoading }) {
   const [articles, setArticles] = useState([]);
@@ -9,7 +10,6 @@ export default function Articles({ isLoading, setIsLoading }) {
   useEffect(() => {
     getAllArticles()
       .then((articles) => {
-        console.log(articles);
         setIsLoading(false);
         setArticles(articles);
       })
@@ -27,7 +27,7 @@ export default function Articles({ isLoading, setIsLoading }) {
         <section className="grid grid-cols-1 gap-4 ">
           {articles.map((article) => (
             <div className="mt-3 mb-3 border" key={article.article_id}>
-              <SingleArticle article={article} />
+              <ArticleCard article={article} />
               <div className="text-center">
                 <Link to={`/articles/${article.article_id}`}>
                   <button className="border p-2 m-3 mb-5 text-1xl text-center">

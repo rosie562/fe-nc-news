@@ -2,23 +2,20 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getArticleById } from "../api";
 
-export default function SingleArticle({ article, setIsLoading, isLoading }) {
+export default function SingleArticle({ setIsLoading, isLoading }) {
   const { article_id } = useParams();
-  const [singleArticle, setSingleArticle] = useState(article || {});
+  const [singleArticle, setSingleArticle] = useState({});
 
   useEffect(() => {
-    if (!article && article_id) {
-      getArticleById(article_id)
-        .then((article) => {
-          console.log(article);
-          setSingleArticle(article);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [article, article_id]);
+    getArticleById(article_id)
+      .then((articleById) => {
+        setSingleArticle(articleById);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [article_id]);
 
   if (isLoading) return <p> Loading... </p>;
 
@@ -38,19 +35,15 @@ export default function SingleArticle({ article, setIsLoading, isLoading }) {
         ""
       )}
       <section>
-        {article_id ? (
-          <div>
-            <img
-              className="p-3 pl-0 mb-4"
-              src={singleArticle.article_img_url}
-              alt={singleArticle.title}
-              width="600px"
-            ></img>
-            <p className="text-lg leading-relaxed mb-4">{singleArticle.body}</p>
-          </div>
-        ) : (
-          ""
-        )}
+        <div>
+          <img
+            className="p-3 pl-0 mb-4"
+            src={singleArticle.article_img_url}
+            alt={singleArticle.title}
+            width="600px"
+          ></img>
+          <p className="text-lg leading-relaxed mb-4">{singleArticle.body}</p>
+        </div>
       </section>
     </div>
   );
