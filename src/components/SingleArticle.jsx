@@ -1,15 +1,31 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getArticleById } from "../api";
+import { getArticleById, getArticleComments } from "../api";
+import Comments from "./Comments";
 
 export default function SingleArticle({ setIsLoading, isLoading }) {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
     getArticleById(article_id)
       .then((articleById) => {
         setSingleArticle(articleById);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [article_id]);
+
+  useEffect(() => {
+    getArticleComments(article_id)
+      .then((comments) => {
+        setComments(comments);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -34,17 +50,16 @@ export default function SingleArticle({ setIsLoading, isLoading }) {
       ) : (
         ""
       )}
-      <section>
-        <div>
-          <img
-            className="p-3 pl-0 mb-4"
-            src={singleArticle.article_img_url}
-            alt={singleArticle.title}
-            width="600px"
-          ></img>
-          <p className="text-lg leading-relaxed mb-4">{singleArticle.body}</p>
-        </div>
-      </section>
+      <div>
+        <img
+          className="p-3 pl-0 mb-4"
+          src={singleArticle.article_img_url}
+          alt={singleArticle.title}
+          width="600px"
+        ></img>
+        <p className="text-lg leading-relaxed mb-4">{singleArticle.body}</p>
+      </div>
+      {comments ? <Comments comments={comments} /> : ""}
     </div>
   );
 }
