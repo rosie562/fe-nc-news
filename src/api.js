@@ -21,3 +21,16 @@ export const getArticleComments = (article_id) => {
     return data.comments;
   });
 };
+
+export const patchArticle = (article_id) => {
+  const requestBody = {
+    inc_votes: 1,
+  };
+
+  return newsApi
+    .patch(`articles/${article_id}`, requestBody)
+    .then(({ data }) => {
+      console.log(data.article)
+      return data.article;
+    });
+};

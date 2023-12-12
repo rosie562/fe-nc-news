@@ -1,7 +1,10 @@
-export default function Comments({ comments }) {
+import CommentAdder from "./CommentAdder";
+
+export default function Comments({ comments, setComments }) {
   return (
     <div>
       <p className="p-3 pt-6">Comments:</p>
+      <CommentAdder setComments={setComments} />
       {comments.map((comment) => (
         <section className="border m-4" key={comment.comment_id}>
           <div className="flex justify-between">
