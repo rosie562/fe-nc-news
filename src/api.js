@@ -30,7 +30,6 @@ export const patchArticle = (article_id) => {
   return newsApi
     .patch(`articles/${article_id}`, requestBody)
     .then(({ data }) => {
-      console.log(data.article)
       return data.article;
-    });
+    })
 };

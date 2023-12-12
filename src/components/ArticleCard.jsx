@@ -6,7 +6,9 @@ export default function SingleArticle({ article }) {
       <p className="pl-3 p-2 ">{article.created_at.substring(0, 10)}</p>
       <p className=" pl-3 pb-3 p-1">{article.comment_count} comments</p>
       {article.votes ? (
-        <p className=" pl-3 pb-3 p-1">{article.votes} votes</p>
+        <p className=" pl-3 pb-3 p-1">
+          {article.votes} vote{article.votes > 1 ? "s" : ""}
+        </p>
       ) : (
         ""
       )}

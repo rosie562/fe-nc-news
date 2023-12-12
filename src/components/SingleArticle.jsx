@@ -35,12 +35,19 @@ export default function SingleArticle({ setIsLoading, isLoading }) {
   }, [article_id]);
 
   function vote(article_id) {
-    patchArticle(article_id);
-
     setArticle((currArticle) => {
       return { ...currArticle, votes: currArticle.votes + 1 };
     });
-    setFeedbackVotes("Vote received");
+    patchArticle(article_id)
+      .then(() => {
+        setFeedbackVotes("Vote received");
+      })
+      .catch(() => {
+        setFeedbackVotes("Vote not received, please try again");
+        setArticle((currArticle) => {
+          return { ...currArticle, votes: currArticle.votes - 1 };
+        });
+      });
   }
 
   if (isLoading) return <p> Loading... </p>;
@@ -53,7 +60,13 @@ export default function SingleArticle({ setIsLoading, isLoading }) {
         {article.created_at ? article.created_at.substring(0, 10) : ""}
       </p>
 
-      {article.votes ? <p className="pb-3">{article.votes} votes</p> : ""}
+      {article.votes ? (
+        <p className="pb-3">
+          {article.votes} vote{article.votes > 1 ? "s" : ""}
+        </p>
+      ) : (
+        ""
+      )}
       <div>
         <button className="border p-2" onClick={() => vote(article.article_id)}>
           Vote
