@@ -84,6 +84,7 @@ export default function SingleArticle({ setIsLoading, isLoading }) {
         <p className="text-lg leading-relaxed mb-4">{article.body}</p>
       </div>
       <p className="mt-6 mb-4">{article.comment_count} comments</p>
+
       {comments ? (
         <Comments setComments={setComments} comments={comments} />
       ) : (

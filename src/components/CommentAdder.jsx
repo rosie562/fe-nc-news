@@ -14,7 +14,6 @@ export default function CommentAdder({ setComments }) {
     event.preventDefault();
     postComment(user, newComment, article_id)
       .then((newPostedComment) => {
-        console.log(newPostedComment);
         setNewComment("");
         setComments((currComments) => {
           return [newPostedComment, ...currComments];
