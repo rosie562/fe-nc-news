@@ -45,3 +45,15 @@ export const getUserByUsername = (existingUser) => {
     return registeredUser;
   });
 };
+
+export const postComment = (user, newComment, article_id) => {
+  const postBody = {
+    username: user.username,
+    body: newComment,
+  };
+  return newsApi
+    .post(`articles/${article_id}/comments`, postBody)
+    .then(({ data }) => {
+      return data.comment;
+    });
+};
