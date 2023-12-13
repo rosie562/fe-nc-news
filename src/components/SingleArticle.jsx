@@ -68,7 +68,10 @@ export default function SingleArticle({ setIsLoading, isLoading }) {
         ""
       )}
       <div>
-        <button className="border p-2" onClick={() => vote(article.article_id)}>
+        <button
+          className="border px-3 py-1 rounded-md"
+          onClick={() => vote(article.article_id)}
+        >
           Vote
         </button>
         {feedbackVotes ? <p className="mt-3 mb-2"> {feedbackVotes}</p> : ""}
@@ -81,7 +84,12 @@ export default function SingleArticle({ setIsLoading, isLoading }) {
         <p className="text-lg leading-relaxed mb-4">{article.body}</p>
       </div>
       <p className="mt-6 mb-4">{article.comment_count} comments</p>
-      {comments ? <Comments comments={comments} /> : ""}
+
+      {comments ? (
+        <Comments setComments={setComments} comments={comments} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }
