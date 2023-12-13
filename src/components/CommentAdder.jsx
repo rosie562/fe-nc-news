@@ -22,7 +22,11 @@ export default function CommentAdder({ setComments }) {
       })
       .catch(() => {
         setFeedbackComment("Comment not posted. Please try again");
-      });
+      }).finally(()=>{
+        setTimeout(() => {
+          setFeedbackComment("");
+        }, 5000);
+      })
   }
 
   return (
