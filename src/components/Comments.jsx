@@ -4,7 +4,6 @@ export default function Comments({ comments, setComments }) {
   return (
     <div>
       <p className="p-3 pt-6">Comments:</p>
-
       <CommentAdder setComments={setComments} />
       <ol>
         {comments.map((comment) => (

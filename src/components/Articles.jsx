@@ -26,9 +26,7 @@ export default function Articles({ isLoading, setIsLoading }) {
         <section className="grid grid-cols-1 gap-4 ">
           {articles.map((article) => (
             <div className="mt-3 mb-3 border" key={article.article_id}>
-              <ArticleCard
-                article={article}
-              />
+              <ArticleCard article={article} />
               <div className="text-center">
                 <Link to={`/articles/${article.article_id}`}>
                   <button className="border p-2 m-3 mb-5 text-1xl text-center">

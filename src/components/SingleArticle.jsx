@@ -68,6 +68,7 @@ export default function SingleArticle({ setIsLoading, isLoading }) {
         ""
       )}
       <div>
+
         <button
           className="border px-3 py-1 rounded-md"
           onClick={() => vote(article.article_id)}
@@ -90,6 +91,7 @@ export default function SingleArticle({ setIsLoading, isLoading }) {
       ) : (
         ""
       )}
+
     </div>
   );
 }
