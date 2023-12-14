@@ -10,7 +10,6 @@ export default function Articles({ isLoading, setIsLoading }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const topicQuery = searchParams.get("topic");
   const [filters, setFilters] = useState({
-
     topic: topicQuery || "",
     sort_by: "created_at",
     order: "desc",
