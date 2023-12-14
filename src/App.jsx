@@ -6,6 +6,7 @@ import HomePage from "./components/HomePage";
 import Articles from "./components/Articles";
 import SingleArticle from "./components/SingleArticle";
 import Profile from "./components/Profile";
+import Error from "./components/Error";
 import { UserProvider } from "./context/UserContext";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Profile isLoading={isLoading} setIsLoading={setIsLoading} />
           }
         />
+        <Route path="/*" element={ <Error />}/>
       </Routes>
     </UserProvider>
   );
