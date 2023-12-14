@@ -3,8 +3,14 @@ import { getAllArticles } from "../api";
 import { Link } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 import { useSearchParams } from "react-router-dom";
+import Error from "./Error";
 
-export default function Articles({ isLoading, setIsLoading }) {
+export default function Articles({
+  isLoading,
+  setIsLoading,
+  setIsError,
+  isError,
+}) {
   const [articles, setArticles] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const topicQuery = searchParams.get("topic");
@@ -26,18 +32,26 @@ export default function Articles({ isLoading, setIsLoading }) {
     getAllArticles(topicQuery, filters.topic, filters.sort_by, filters.order)
       .then((articles) => {
         setIsLoading(false);
+        setIsError('');
         setArticles(articles);
       })
       .catch((err) => {
-        console.log(err);
+        setIsError(err.response.data.msg);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [filters, topicQuery]);
 
-  if (isLoading) return <p> Loading... </p>;
+  if (isLoading) {
+    return <p> Loading... </p>;
+  }
+  if (isError) {
+    return <Error message={isError} />;
+  }
 
   return (
     <>
-
       <section className="container mx-auto p-4">
         {topicQuery ? (
           <h2 className="text-3xl font-bold mb-4">
@@ -132,4 +146,3 @@ export default function Articles({ isLoading, setIsLoading }) {
     </>
   );
 }
-
