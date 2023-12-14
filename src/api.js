@@ -4,10 +4,15 @@ const newsApi = axios.create({
   baseURL: "https://nc-news-fsgh.onrender.com/api",
 });
 
-export const getAllArticles = () => {
-  return newsApi.get("/articles").then(({ data }) => {
-    return data.articles;
-  });
+export const getAllArticles = (topic, sort_by, order) => {
+  return newsApi
+    .get("/articles", {
+      params: { topic: topic, sort_by: sort_by, order: order },
+    })
+    .then(({ data }) => {
+      console.log(data.articles);
+      return data.articles;
+    });
 };
 
 export const getArticleById = (article_id) => {
@@ -60,4 +65,10 @@ export const postComment = (user, newComment, article_id) => {
 
 export const deleteComment = (comment_id) => {
   return newsApi.delete(`comments/${comment_id}`);
+};
+
+export const getTopics = () => {
+  return newsApi.get("/topics").then(({ data }) => {
+    return data.topics;
+  });
 };

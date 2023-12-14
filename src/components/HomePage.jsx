@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+
 export default function HomePage() {
+
   return (
     <>
       <section className="border mx-auto">
@@ -15,6 +17,8 @@ export default function HomePage() {
           </button>
         </Link>
       </div>
+      <section className="p-6 border">
+      </section>
     </>
   );
 }
