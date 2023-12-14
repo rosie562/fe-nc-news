@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 import { useSearchParams } from "react-router-dom";
 
+import { useSearchParams } from "react-router-dom";
+
 export default function Articles({ isLoading, setIsLoading }) {
   const [articles, setArticles] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -37,6 +39,7 @@ export default function Articles({ isLoading, setIsLoading }) {
 
   return (
     <>
+
       <section className="container mx-auto p-4">
         {topicQuery ? (
           <h2 className="text-3xl font-bold mb-4">
@@ -131,3 +134,4 @@ export default function Articles({ isLoading, setIsLoading }) {
     </>
   );
 }
+

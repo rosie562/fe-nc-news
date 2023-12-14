@@ -71,3 +71,4 @@ export const getTopics = () => {
     return data.topics;
   });
 };
+
