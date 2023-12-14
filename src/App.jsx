@@ -9,34 +9,46 @@ import Profile from "./components/Profile";
 import Error from "./components/Error";
 import { UserProvider } from "./context/UserContext";
 
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState("");
   return (
-    <UserProvider>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route
-          path="/articles"
-          element={
-            <Articles isLoading={isLoading} setIsLoading={setIsLoading} />
-          }
-        />
-        <Route
-          path="/articles/:article_id"
-          element={
-            <SingleArticle isLoading={isLoading} setIsLoading={setIsLoading} />
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <Profile isLoading={isLoading} setIsLoading={setIsLoading} />
-          }
-        />
-        <Route path="/*" element={ <Error />}/>
-      </Routes>
-    </UserProvider>
+      <UserProvider>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/articles"
+            element={
+              <Articles
+                isError={isError}
+                setIsError={setIsError}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            }
+          />
+          <Route
+            path="/articles/:article_id"
+            element={
+              <SingleArticle
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+                isError={isError}
+                setIsError={setIsError}
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Profile isLoading={isLoading} setIsLoading={setIsLoading} />
+            }
+          />
+          <Route path="/*" element={<Error message="route not found" />} />
+        </Routes>
+      </UserProvider>
   );
 }
 

@@ -2,21 +2,27 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getArticleById, getArticleComments, patchArticle } from "../api";
 import Comments from "./Comments";
+import Error from "./Error";
 
-export default function SingleArticle({ setIsLoading, isLoading }) {
+
+export default function SingleArticle({ setIsLoading, isLoading, isError,setIsError }) {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
   const [feedbackVotes, setFeedbackVotes] = useState("");
 
+ 
+
   useEffect(() => {
     setIsLoading(true);
     getArticleById(article_id)
       .then((articleById) => {
+        setIsError('');
         setArticle(articleById);
       })
       .catch((err) => {
-        console.log(err);
+        setIsError(err.response.data.msg);
+        setArticle({});
       })
       .finally(() => {
         setIsLoading(false);
@@ -27,10 +33,12 @@ export default function SingleArticle({ setIsLoading, isLoading }) {
     getArticleComments(article_id)
       .then((comments) => {
         setComments(comments);
-        setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+       console.log(err)
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [article_id]);
 
@@ -50,7 +58,12 @@ export default function SingleArticle({ setIsLoading, isLoading }) {
       });
   }
 
-  if (isLoading) return <p> Loading... </p>;
+  if (isLoading) {
+    return <p> Loading... </p>;
+  }
+  if (isError){
+    return <Error message={isError}/>
+  }
 
   return (
     <div className="max-w-2xl mx-auto p-4">
@@ -68,7 +81,6 @@ export default function SingleArticle({ setIsLoading, isLoading }) {
         ""
       )}
       <div>
-
         <button
           className="border px-3 py-1 rounded-md"
           onClick={() => vote(article.article_id)}
@@ -91,7 +103,6 @@ export default function SingleArticle({ setIsLoading, isLoading }) {
       ) : (
         ""
       )}
-
     </div>
   );
 }

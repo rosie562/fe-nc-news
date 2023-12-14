@@ -7,30 +7,47 @@ const newsApi = axios.create({
 export const getAllArticles = (topicQuery, topic, sort_by, order) => {
   return newsApi
     .get("/articles", {
-      params: { topicQuery:topicQuery, topic: topic, sort_by: sort_by, order: order },
+      params: {
+        topicQuery: topicQuery,
+        topic: topic,
+        sort_by: sort_by,
+        order: order,
+      },
     })
     .then(({ data }) => {
       return data.articles;
+    })
+    .catch((err) => {
+      return Promise.reject(err);
     });
 };
 
 export const getArticleById = (article_id) => {
-  return newsApi.get(`articles/${article_id}`).then(({ data }) => {
-    return data.article;
-  });
+  return newsApi
+    .get(`articles/${article_id}`)
+    .then(({ data }) => {
+      return data.article;
+    })
+    .catch((err) => {
+      return Promise.reject(err);
+    });
 };
 
 export const getArticleComments = (article_id) => {
-  return newsApi.get(`articles/${article_id}/comments`).then(({ data }) => {
-    return data.comments;
-  });
+  return newsApi
+    .get(`articles/${article_id}/comments`)
+    .then(({ data }) => {
+      return data.comments;
+    })
+    .catch((err) => {
+      return Promise.reject(err);
+    });
 };
 
 export const patchArticle = (article_id) => {
   const requestBody = {
     inc_votes: 1,
   };
-
   return newsApi
     .patch(`articles/${article_id}`, requestBody)
     .then(({ data }) => {
@@ -71,5 +88,3 @@ export const getTopics = () => {
     return data.topics;
   });
 };
-
-
