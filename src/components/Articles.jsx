@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 import { useSearchParams } from "react-router-dom";
 
-import { useSearchParams } from "react-router-dom";
-
 export default function Articles({ isLoading, setIsLoading }) {
   const [articles, setArticles] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
