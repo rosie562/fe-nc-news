@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getTopics } from "../api";
+
 export default function HomePage() {
   const [topics, setTopics] = useState([]);
   useEffect(() => {
