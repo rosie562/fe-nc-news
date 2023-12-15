@@ -46,7 +46,7 @@ function App() {
               <Profile isLoading={isLoading} setIsLoading={setIsLoading} />
             }
           />
-          <Route path="/*" element={<Error message="route not found" />} />
+          <Route path="/*" element={<Error message="Route not found" />} />
         </Routes>
       </UserProvider>
   );

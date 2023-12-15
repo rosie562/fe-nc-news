@@ -3,6 +3,7 @@ import { UserContext } from "../context/UserContext";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { postComment } from "../api";
+import Error from "./Error";
 
 export default function CommentAdder({ setComments }) {
   const { article_id } = useParams();
@@ -45,7 +46,7 @@ export default function CommentAdder({ setComments }) {
             />
             <button className="border px-4 py-2 rounded-md">Add</button>
             {feedbackComment ? (
-              <p className="mt-3 mb-2"> {feedbackComment}</p>
+              <Error className="mt-3 mb-2" message={feedbackComment} />
             ) : (
               ""
             )}
@@ -53,9 +54,9 @@ export default function CommentAdder({ setComments }) {
         </form>
       ) : (
         <div className="text-center">
-          <p className="m-3">
-            You are not logged in. Please log in to post a comment.
-          </p>
+          <Error className="m-3"
+            message='You are not logged in. Please log in to post a comment.'
+          />
           <Link to={"/profile"}>
             <button className="border px-4 py-2 rounded-md">Login Here</button>
           </Link>
