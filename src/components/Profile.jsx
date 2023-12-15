@@ -20,6 +20,7 @@ export default function Profile() {
       });
   }
 
+
   function handleSignOut() {
     setUser({
       username: "",
@@ -31,14 +32,14 @@ export default function Profile() {
   }
 
   return (
-    <div className="max-w-xl mx-auto m-8">
+    <div className="m-8 mx-auto max-w-xl">
       {!user.username ? (
-        <div className="p-3 border rounded-md flex flex-col items-center justify-center">
-          <p className="m-4 text-lg text-center">
+        <div className="flex flex-col items-center justify-center rounded-md border p-3">
+          <p className="m-4 text-center text-lg">
             You are not logged in. Please log in below:
           </p>
           <button
-            className="border px-4 py-2 mr-4 rounded-md "
+            className="mr-4 rounded-md border px-4 py-2 "
             onClick={(event) => {
               event.preventDefault();
               setLoginToggle(true);
@@ -48,18 +49,18 @@ export default function Profile() {
           </button>
           {loginToggle ? (
             <>
-              <label className="block mt-2">
+              <label className="mt-2 block">
                 Username:
                 <input
                   placeholder="Enter your username here"
-                  className="border p-3 pt-2 pb-2 w-full m-1"
+                  className="m-1 w-full border p-3 pb-2 pt-2"
                   type="text"
                   value={existingUser}
                   onChange={(event) => setExistingUser(event.target.value)}
                 />
               </label>
               <button
-                className="rounded-md border px-4 py-2 mt-2"
+                className="mt-2 rounded-md border px-4 py-2"
                 onClick={() => {
                   handleLogin(existingUser);
                 }}
@@ -72,7 +73,7 @@ export default function Profile() {
           )}
           {isError ? (
             <>
-              <p className="text-red-500 mt-2">User not found</p>{" "}
+              <p className="mt-2 text-red-500">User not found</p>{" "}
               <p className="m-2">You can log in as user "cooljmessy" </p>
             </>
           ) : (
@@ -84,7 +85,7 @@ export default function Profile() {
           <p className="mb-4 text-lg">Hello {user.username}</p>
           <div>
             <button
-              className="px-4 py-2 border rounded-md"
+              className="rounded-md border px-4 py-2"
               onClick={() => {
                 handleSignOut();
               }}

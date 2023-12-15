@@ -23,30 +23,31 @@ export default function CommentAdder({ setComments }) {
       })
       .catch(() => {
         setFeedbackComment("Comment not posted. Please try again");
-      }).finally(()=>{
+      })
+      .finally(() => {
         setTimeout(() => {
           setFeedbackComment("");
         }, 5000);
-      })
+      });
   }
 
   return (
-    <div className="p-3 border rounded-md">
+    <div className="rounded-md border p-3">
       {user.username ? (
         <form onSubmit={handleSubmit} className="flex flex-col">
           <label className="m-2">
             Comment:
             <textarea
               placeholder="Enter your comment here"
-              className="border p-2 w-full mt-2"
+              className="mt-2 w-full border p-2"
               id="newComment"
               multiline="true"
               value={newComment}
               onChange={(event) => setNewComment(event.target.value)}
             />
-            <button className="border px-4 py-2 rounded-md">Add</button>
+            <button className="rounded-md border px-4 py-2">Add</button>
             {feedbackComment ? (
-              <Error className="mt-3 mb-2" message={feedbackComment} />
+              <Error className="mb-2 mt-3" message={feedbackComment} />
             ) : (
               ""
             )}
@@ -54,11 +55,12 @@ export default function CommentAdder({ setComments }) {
         </form>
       ) : (
         <div className="text-center">
-          <Error className="m-3"
-            message='You are not logged in. Please log in to post a comment.'
+          <Error
+            className="m-3"
+            message="You are not logged in. Please log in to post a comment."
           />
           <Link to={"/profile"}>
-            <button className="border px-4 py-2 rounded-md">Login Here</button>
+            <button className="rounded-md border px-4 py-2">Login Here</button>
           </Link>
         </div>
       )}

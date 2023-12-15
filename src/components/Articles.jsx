@@ -32,7 +32,7 @@ export default function Articles({
     getAllArticles(topicQuery, filters.topic, filters.sort_by, filters.order)
       .then((articles) => {
         setIsLoading(false);
-        setIsError('');
+        setIsError("");
         setArticles(articles);
       })
       .catch((err) => {
@@ -54,19 +54,19 @@ export default function Articles({
     <>
       <section className="container mx-auto p-4">
         {topicQuery ? (
-          <h2 className="text-4xl font-bold mt-7 mb-12 text-center">
+          <h2 className="mb-12 mt-7 text-center text-4xl font-bold">
             {topicQuery.slice(0, 1).toUpperCase() + topicQuery.slice(1)}
           </h2>
         ) : (
-          <h2 className="text-4xl font-bold mt-7 mb-12 text-center">
+          <h2 className="mb-12 mt-7 text-center text-4xl font-bold">
             Articles
           </h2>
         )}
 
-        <div className="flex flex-col-reverse sm:flex-row justify-end mb-4">
+        <div className="mb-4 flex flex-col-reverse justify-end sm:flex-row">
           <div className="lg:ml-2">
             <label
-              className="block text-sm font-medium pb-2 pt-2"
+              className="block pb-2 pt-2 text-sm font-medium"
               htmlFor="sort_by"
             >
               Sort By:
@@ -86,7 +86,7 @@ export default function Articles({
           </div>
           <div className="lg:ml-2">
             <label
-              className="block text-sm font-medium pb-2 pt-2"
+              className="block pb-2 pt-2 text-sm font-medium"
               htmlFor="order"
             >
               Order By:
@@ -107,7 +107,7 @@ export default function Articles({
           {!topicQuery ? (
             <div className="lg:ml-2">
               <label
-                className="block text-sm font-medium pb-2 pt-2"
+                className="block pb-2 pt-2 text-sm font-medium"
                 htmlFor="topic"
               >
                 Filter By Topic:
@@ -132,11 +132,11 @@ export default function Articles({
         </div>
         <section className="grid grid-cols-1 gap-4 ">
           {articles.map((article) => (
-            <div className="mt-3 mb-3 border" key={article.article_id}>
+            <div className="mb-3 mt-3 border" key={article.article_id}>
               <ArticleCard article={article} />
               <div className="text-center">
                 <Link to={`/articles/${article.article_id}`}>
-                  <button className="border p-2 m-3 mb-5 text-1xl text-center">
+                  <button className="text-1xl m-3 mb-5 border p-2 text-center">
                     Go to Article
                   </button>
                 </Link>

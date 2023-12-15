@@ -4,20 +4,22 @@ import { getArticleById, getArticleComments, patchArticle } from "../api";
 import Comments from "./Comments";
 import Error from "./Error";
 
-
-export default function SingleArticle({ setIsLoading, isLoading, isError,setIsError }) {
+export default function SingleArticle({
+  setIsLoading,
+  isLoading,
+  isError,
+  setIsError,
+}) {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
   const [feedbackVotes, setFeedbackVotes] = useState("");
 
- 
-
   useEffect(() => {
     setIsLoading(true);
     getArticleById(article_id)
       .then((articleById) => {
-        setIsError('');
+        setIsError("");
         setArticle(articleById);
       })
       .catch((err) => {
@@ -35,7 +37,7 @@ export default function SingleArticle({ setIsLoading, isLoading, isError,setIsEr
         setComments(comments);
       })
       .catch((err) => {
-       console.log(err)
+        console.log(err);
       })
       .finally(() => {
         setIsLoading(false);
@@ -61,14 +63,14 @@ export default function SingleArticle({ setIsLoading, isLoading, isError,setIsEr
   if (isLoading) {
     return <p> Loading... </p>;
   }
-  if (isError){
-    return <Error message={isError}/>
+  if (isError) {
+    return <Error message={isError} />;
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <p className="text-4xl font-bold mb-4 mt-3">{article.title}</p>
-      <p className="font-bold  mb-4">{article.author}</p>
+    <div className="mx-auto max-w-2xl p-4">
+      <p className="mb-4 mt-3 text-4xl font-bold">{article.title}</p>
+      <p className="mb-4  font-bold">{article.author}</p>
       <p className="mb-4">
         {article.created_at ? article.created_at.substring(0, 10) : ""}
       </p>
@@ -82,21 +84,21 @@ export default function SingleArticle({ setIsLoading, isLoading, isError,setIsEr
       )}
       <div>
         <button
-          className="border px-3 py-1 rounded-md"
+          className="rounded-md border px-3 py-1"
           onClick={() => vote(article.article_id)}
         >
           Vote
         </button>
-        {feedbackVotes ? <p className="mt-3 mb-2"> {feedbackVotes}</p> : ""}
+        {feedbackVotes ? <p className="mb-2 mt-3"> {feedbackVotes}</p> : ""}
         <img
-          className="p-3 pl-0 mb-4"
+          className="mb-4 p-3 pl-0"
           src={article.article_img_url}
           alt={article.title}
           width="600px"
         ></img>
-        <p className="text-lg leading-relaxed mb-4">{article.body}</p>
+        <p className="mb-4 text-lg leading-relaxed">{article.body}</p>
       </div>
-      <p className="mt-6 mb-4">{article.comment_count} comments</p>
+      <p className="mb-4 mt-6">{article.comment_count} comments</p>
 
       {comments ? (
         <Comments setComments={setComments} comments={comments} />

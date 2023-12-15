@@ -34,16 +34,16 @@ export default function Comments({ comments, setComments }) {
       <ol>
         {comments &&
           comments.map((comment) => (
-            <section className="border m-4" key={comment.comment_id}>
+            <section className="m-4 border" key={comment.comment_id}>
               <div className="flex justify-between">
-                <p className="pl-3 pb-3 m-2 font-bold">{comment.author}</p>
+                <p className="m-2 pb-3 pl-3 font-bold">{comment.author}</p>
                 <p className="m-2">{comment.created_at.substring(0, 10)}</p>
               </div>
-              <p className="pl-3 pb-3 m-2">{comment.body}</p>
+              <p className="m-2 pb-3 pl-3">{comment.body}</p>
               {user.username === comment.author ? (
                 <div>
                   <button
-                    className="px-3 py-1 rounded-md border "
+                    className="rounded-md border px-3 py-1 "
                     onClick={() => {
                       handleDelete(comment.comment_id);
                     }}
