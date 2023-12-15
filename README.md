@@ -34,6 +34,6 @@ To run locally, follow these instructions:
 - ✅ Sort articles
 - ✅ Error Handling
 - ✅ Netlify Deployment
+- ✅ Responsiveness: viewable on variety of screen sizes
 - ⭕️ Styling
-- ⭕️ Responsiveness: viewable on variety of screen sizes
 - ⭕️ Accessibility

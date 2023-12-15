@@ -54,15 +54,17 @@ export default function Articles({
     <>
       <section className="container mx-auto p-4">
         {topicQuery ? (
-          <h2 className="text-3xl font-bold mb-4">
+          <h2 className="text-4xl font-bold mt-7 mb-12 text-center">
             {topicQuery.slice(0, 1).toUpperCase() + topicQuery.slice(1)}
           </h2>
         ) : (
-          <h2 className="text-3xl font-bold mb-4">Articles</h2>
+          <h2 className="text-4xl font-bold mt-7 mb-12 text-center">
+            Articles
+          </h2>
         )}
 
-        <div className="flex mx-auto mb-4 justify-end">
-          <div className="ml-2">
+        <div className="flex flex-col-reverse sm:flex-row justify-end mb-4">
+          <div className="lg:ml-2">
             <label
               className="block text-sm font-medium pb-2 pt-2"
               htmlFor="sort_by"
@@ -70,7 +72,7 @@ export default function Articles({
               Sort By:
             </label>
             <select
-              className="border p-4"
+              className="border p-1"
               id="sort_by"
               name="sort_by"
               onChange={handleFilter}
@@ -82,7 +84,7 @@ export default function Articles({
               </optgroup>
             </select>
           </div>
-          <div className="ml-2">
+          <div className="lg:ml-2">
             <label
               className="block text-sm font-medium pb-2 pt-2"
               htmlFor="order"
@@ -90,7 +92,7 @@ export default function Articles({
               Order By:
             </label>
             <select
-              className="border p-4"
+              className="border p-1"
               id="order"
               name="order"
               onChange={handleFilter}
@@ -103,7 +105,7 @@ export default function Articles({
           </div>
 
           {!topicQuery ? (
-            <div className="ml-2">
+            <div className="lg:ml-2">
               <label
                 className="block text-sm font-medium pb-2 pt-2"
                 htmlFor="topic"
@@ -111,7 +113,7 @@ export default function Articles({
                 Filter By Topic:
               </label>
               <select
-                className="border p-4"
+                className="border p-1"
                 id="topic"
                 name="topic"
                 onChange={handleFilter}
