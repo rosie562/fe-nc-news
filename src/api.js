@@ -67,6 +67,13 @@ export const getUserByUsername = (existingUser) => {
   });
 };
 
+export const getUsers = () => {
+  return newsApi.get("/users").then(({ data }) => {
+    return data.users;
+  });
+};
+
+
 export const postComment = (user, newComment, article_id) => {
   const postBody = {
     username: user.username,

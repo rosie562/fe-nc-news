@@ -1,34 +1,44 @@
 import { UserContext } from "../context/UserContext";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { getUserByUsername } from "../api";
+import { getUsers } from "../api";
 
 export default function Profile() {
   const { user, setUser } = useContext(UserContext);
   const [existingUser, setExistingUser] = useState("");
-  const [loginToggle, setLoginToggle] = useState(false);
+  const [loginToggle, setLoginToggle] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [allUsers, setAllUsers] = useState([]);
 
-  function handleLogin(existingUser) {
-    getUserByUsername(existingUser)
-      .then(() => {
-        setIsError(false);
-        setUser({ username: existingUser });
+  function handleLogin(event) {
+    const selectedUsername = event.target.value;
+
+    getUserByUsername(selectedUsername)
+      .then((result) => {
+        setUser(result[0]);
+        setLoginToggle(true);
+        console.log("logged in");
       })
-      .catch((err) => {
+      .catch((error) => {
+        console.error("Error fetching user details:", error);
         setIsError(true);
-        return err;
       });
   }
 
+  console.log(user);
+  useEffect(() => {
+    getUsers().then((users) => {
+      setAllUsers(users);
+    });
+  }, []);
 
   function handleSignOut() {
     setUser({
       username: "",
       name: "",
-      avatar: "",
     });
     setExistingUser("");
-    setLoginToggle(false);
+    setLoginToggle(true);
   }
 
   return (
@@ -38,35 +48,23 @@ export default function Profile() {
           <p className="m-4 text-center text-lg">
             You are not logged in. Please log in below:
           </p>
-          <button
-            className="mr-4 rounded-md border px-4 py-2 "
-            onClick={(event) => {
-              event.preventDefault();
-              setLoginToggle(true);
-            }}
-          >
-            Log In
-          </button>
           {loginToggle ? (
             <>
-              <label className="mt-2 block">
-                Username:
-                <input
-                  placeholder="Enter your username here"
-                  className="m-1 w-full border p-3 pb-2 pt-2"
-                  type="text"
-                  value={existingUser}
-                  onChange={(event) => setExistingUser(event.target.value)}
-                />
-              </label>
-              <button
-                className="mt-2 rounded-md border px-4 py-2"
-                onClick={() => {
-                  handleLogin(existingUser);
-                }}
+              <select
+                className="border p-1"
+                id="users"
+                name="users"
+                onChange={handleLogin}
               >
-                Login
-              </button>
+                {allUsers.map((user) => (
+                  <optgroup
+                    label={`${user.name} (${user.username})`}
+                    key={user.username}
+                  >
+                    <option value={user.username}>{user.username}</option>
+                  </optgroup>
+                ))}
+              </select>
             </>
           ) : (
             ""

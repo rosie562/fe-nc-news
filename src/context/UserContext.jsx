@@ -6,7 +6,7 @@ export const UserProvider = (props) => {
   const [user, setUser] = useState({
     username: "",
     name: "",
-    avatar: "",
+    avatar_url: "",
   });
 
   return (
