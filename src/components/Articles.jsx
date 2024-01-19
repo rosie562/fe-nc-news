@@ -54,11 +54,11 @@ export default function Articles({
     <>
       <section className="container mx-auto p-4">
         {topicQuery ? (
-          <h2 className="mb-12 mt-7 text-center font-mono text-4xl font-bold">
+          <h2 className="mb-12 mt-7 text-center font-mono text-6xl font-bold">
             {topicQuery.slice(0, 1).toUpperCase() + topicQuery.slice(1)}
           </h2>
         ) : (
-          <h2 className="mb-12 mt-7 text-center font-mono text-4xl font-bold">
+          <h2 className="mb-12 mt-7 text-center font-mono text-6xl font-bold">
             Articles
           </h2>
         )}

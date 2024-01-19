@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { useState, useEffect, useContext } from "react";
 import { getTopics } from "../api";
+import { getAllArticles } from "../api";
 
 export default function HomePage() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [topics, setTopics] = useState([]);
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     getTopics()
@@ -17,11 +19,22 @@ export default function HomePage() {
       });
   }, []);
 
+  useEffect(() => {
+    getAllArticles()
+      .then((articles) => {
+        setArticles(articles);
+      })
+      .catch((err) => {
+        setIsError(err.response.data.msg);
+      })
+      .finally(() => {});
+  }, []);
+
   return (
     <>
       <section className="mx-auto">
         <header className="flex-col gap-8 p-10 text-center">
-          <h1 className="mt-8 p-2 font-mono text-5xl font-bold">NC News</h1>
+          <h1 className="mt-8 p-2 font-mono text-8xl font-bold">NC News</h1>
         </header>
       </section>
 
@@ -35,9 +48,6 @@ export default function HomePage() {
             </Link>
           ) : (
             <div className="flex flex-col justify-center text-center">
-              <p className="p-2 font-mono text-lg">
-                Welcome back {user.username}!
-              </p>
               <section className="p-6">
                 <p className="m-2 font-mono">Browse Topics:</p>
 
@@ -55,11 +65,30 @@ export default function HomePage() {
                     ))}
                   </section>
                 )}
-                <Link to="/articles">
-                  <button className="m-6 rounded-md border p-5 font-mono shadow-md">
-                    Go to Articles
-                  </button>
-                </Link>
+                <div className="m-4 mt-6 flex flex-col-reverse justify-end font-mono sm:flex-row hover:underline">
+                  <Link to="/articles">View All Articles</Link>
+                </div>
+                <section className="flex flex-wrap">
+                  {articles.map((article) => (
+                    <div
+                      className="w-full p-4 sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4"
+                      key={article.article_id}
+                    >
+                      <Link to={`/articles/${article.article_id}`}>
+                        <div className="rounded-lg border-2 p-4 shadow-lg">
+                          <p className="p-2 font-mono text-lg">
+                            {article.title}
+                          </p>
+                          <img
+                            src={article.article_img_url}
+                            alt={article.title}
+                            className="mb-2 h-32 w-full object-cover"
+                          />
+                        </div>
+                      </Link>
+                    </div>
+                  ))}
+                </section>
               </section>
             </div>
           )}

@@ -10,7 +10,6 @@ export default function Profile() {
 
   function handleLogin(event) {
     const selectedUsername = event.target.value;
-
     getUserByUsername(selectedUsername)
       .then((userFromApi) => {
         setUser(userFromApi);
@@ -51,6 +50,7 @@ export default function Profile() {
               name="users"
               onChange={handleLogin}
             >
+              <option value="">Select a user</option>
               <optgroup label="Username">
                 {allUsers.map((user) => (
                   <option key={user.username} value={user.username}>
