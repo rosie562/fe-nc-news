@@ -69,14 +69,14 @@ export default function SingleArticle({
 
   return (
     <div className="mx-auto max-w-2xl p-4">
-      <p className="mb-4 mt-3 text-4xl font-bold">{article.title}</p>
-      <p className="mb-4  font-bold">{article.author}</p>
-      <p className="mb-4">
+      <p className="mb-4 mt-3 font-mono text-4xl font-bold">{article.title}</p>
+      <p className="mb-4 font-mono font-bold">{article.author}</p>
+      <p className="mb-4 font-mono">
         {article.created_at ? article.created_at.substring(0, 10) : ""}
       </p>
 
       {article.votes ? (
-        <p className="pb-3">
+        <p className="pb-3 font-mono">
           {article.votes} vote{article.votes > 1 ? "s" : ""}
         </p>
       ) : (
@@ -84,21 +84,25 @@ export default function SingleArticle({
       )}
       <div>
         <button
-          className="rounded-md border px-3 py-1"
+          className="rounded-md border px-3 py-1 font-mono"
           onClick={() => vote(article.article_id)}
         >
           Vote
         </button>
-        {feedbackVotes ? <p className="mb-2 mt-3"> {feedbackVotes}</p> : ""}
+        {feedbackVotes ? (
+          <p className="mb-2 mt-3 font-mono"> {feedbackVotes}</p>
+        ) : (
+          ""
+        )}
         <img
           className="mb-4 p-3 pl-0"
           src={article.article_img_url}
           alt={article.title}
           width="600px"
         ></img>
-        <p className="mb-4 text-lg leading-relaxed">{article.body}</p>
+        <p className="mb-4 font-mono text-lg leading-relaxed">{article.body}</p>
       </div>
-      <p className="mb-4 mt-6">{article.comment_count} comments</p>
+      <p className="mb-4 mt-6 font-mono">{article.comment_count} comments</p>
 
       {comments ? (
         <Comments setComments={setComments} comments={comments} />

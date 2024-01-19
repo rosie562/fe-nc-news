@@ -35,7 +35,7 @@ export default function CommentAdder({ setComments }) {
     <div className="rounded-md border p-3">
       {user.username ? (
         <form onSubmit={handleSubmit} className="flex flex-col">
-          <label className="m-2">
+          <label className="font-mono m-2">
             Comment:
             <textarea
               placeholder="Enter your comment here"
@@ -60,7 +60,9 @@ export default function CommentAdder({ setComments }) {
             message="You are not logged in. Please log in to post a comment."
           />
           <Link to={"/profile"}>
-            <button className="rounded-md border px-4 py-2">Login Here</button>
+            <button className="rounded-md border px-4 py-2 font-mono">
+              Login Here
+            </button>
           </Link>
         </div>
       )}

@@ -54,19 +54,19 @@ export default function Articles({
     <>
       <section className="container mx-auto p-4">
         {topicQuery ? (
-          <h2 className="mb-12 mt-7 text-center text-4xl font-bold">
+          <h2 className="mb-12 mt-7 text-center font-mono text-4xl font-bold">
             {topicQuery.slice(0, 1).toUpperCase() + topicQuery.slice(1)}
           </h2>
         ) : (
-          <h2 className="mb-12 mt-7 text-center text-4xl font-bold">
+          <h2 className="mb-12 mt-7 text-center font-mono text-4xl font-bold">
             Articles
           </h2>
         )}
 
-        <div className="mb-4 flex flex-col-reverse justify-end sm:flex-row">
+        <div className="mb-4 flex flex-col-reverse justify-end font-mono sm:flex-row">
           <div className="lg:ml-2">
             <label
-              className="block pb-2 pt-2 text-sm font-medium"
+              className="block pb-2 pt-2 font-mono text-sm font-medium"
               htmlFor="sort_by"
             >
               Sort By:
@@ -136,7 +136,7 @@ export default function Articles({
               <ArticleCard article={article} />
               <div className="text-center">
                 <Link to={`/articles/${article.article_id}`}>
-                  <button className="text-1xl m-3 mb-5 border p-2 text-center">
+                  <button className="text-1xl m-3 mb-5 border p-2 text-center font-mono">
                     Go to Article
                   </button>
                 </Link>

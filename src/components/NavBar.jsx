@@ -31,7 +31,7 @@ export default function Header() {
       ) : (
         <div className="text-align p-4 font-mono text-lg text-white">
           Logged in as{" "}
-          <Link to="/profile" className=" font-extrabold hover:underline">
+          <Link to="/profile" className=" font-extrabold underline">
             {` ${user.username}`}
           </Link>
         </div>

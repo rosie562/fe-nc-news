@@ -57,13 +57,14 @@ export const patchArticle = (article_id) => {
 
 export const getUserByUsername = (existingUser) => {
   return newsApi.get("/users").then(({ data }) => {
+
     const registeredUser = data.users.filter((user) => {
       return user.username === existingUser;
     });
     if (registeredUser.length === 0) {
       throw new Error("User not found. Use cooljmessy to log in");
     }
-    return registeredUser;
+    return registeredUser[0];
   });
 };
 
