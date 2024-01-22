@@ -30,7 +30,13 @@ export default function Comments({ comments, setComments }) {
     <div>
       <p className="pb-3 pt-6 font-mono">Comments:</p>
       <CommentAdder setComments={setComments} />
-      {deleteFeedback ? <p>{deleteFeedback}</p> : ""}
+      {deleteFeedback ? (
+        <p className="mt-4 font-mono font-bold">
+          {deleteFeedback}
+        </p>
+      ) : (
+        ""
+      )}
       <ol>
         {comments &&
           comments.map((comment) => (
@@ -39,7 +45,7 @@ export default function Comments({ comments, setComments }) {
                 <p className="m-2 mt-4 pb-3 pl-3 font-mono font-bold">
                   {comment.author}
                 </p>
-                <p className="mt-4 font-mono m-2">
+                <p className="m-2 mt-4 font-mono">
                   {comment.created_at.substring(0, 10)}
                 </p>
               </div>

@@ -48,21 +48,14 @@ export default function CommentAdder({ setComments }) {
             <button className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-blue-700">
               Add
             </button>
-            {feedbackComment ? (
-              <Error className="mb-2 mt-3" message={feedbackComment} />
-            ) : (
-              ""
-            )}
+            {feedbackComment ? <Error message={feedbackComment} /> : ""}
           </label>
         </form>
       ) : (
         <div className="text-center">
-          <Error
-            className="m-3"
-            message="You are not logged in. Please log in to post a comment."
-          />
+          <Error message="You are not logged in. Please log in to post a comment." />
           <Link to={"/profile"}>
-            <button className="rounded-md border px-4 py-2 font-mono">
+            <button className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-blue-700">
               Login Here
             </button>
           </Link>

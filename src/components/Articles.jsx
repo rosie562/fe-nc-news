@@ -132,7 +132,7 @@ export default function Articles({
         </div>
         <section className="grid grid-cols-1 gap-4 ">
           {articles.map((article) => (
-            <div className="mb-3 mt-3 border" key={article.article_id}>
+            <div className="mb-3 mt-3 rounded-md border" key={article.article_id}>
               <ArticleCard article={article} />
               <div className="text-center">
                 <Link to={`/articles/${article.article_id}`}>

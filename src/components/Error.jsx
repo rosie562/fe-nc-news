@@ -1,7 +1,7 @@
 export default function Error({ message }) {
   return (
     <div>
-      <p>{message}</p>
+      <p className="font-mono font-semibold mt-3 mb-3">{message}</p>
     </div>
   );
 }

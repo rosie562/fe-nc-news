@@ -1,7 +1,7 @@
 export default function SingleArticle({ article }) {
   return (
-    <div>
-      <p className="text-2.5xl mt-2 p-1 pl-3 pt-3 font-mono font-bold">
+    <div className="m-2">
+      <p className="text-xl mt-2 mb-2 p-1 pl-3 pt-3 font-mono font-bold">
         {article.title}
       </p>
       <p className="p-1 pl-3 font-mono font-bold">{article.author}</p>
