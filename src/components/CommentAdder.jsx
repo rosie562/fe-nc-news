@@ -35,7 +35,7 @@ export default function CommentAdder({ setComments }) {
     <div className="rounded-md border p-3">
       {user.username ? (
         <form onSubmit={handleSubmit} className="flex flex-col">
-          <label className="font-mono m-2">
+          <label className="m-2 font-mono">
             Comment:
             <textarea
               placeholder="Enter your comment here"
@@ -45,7 +45,9 @@ export default function CommentAdder({ setComments }) {
               value={newComment}
               onChange={(event) => setNewComment(event.target.value)}
             />
-            <button className="rounded-md border px-4 py-2">Add</button>
+            <button className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-blue-700">
+              Add
+            </button>
             {feedbackComment ? (
               <Error className="mb-2 mt-3" message={feedbackComment} />
             ) : (

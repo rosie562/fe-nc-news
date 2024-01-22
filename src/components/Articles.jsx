@@ -136,7 +136,7 @@ export default function Articles({
               <ArticleCard article={article} />
               <div className="text-center">
                 <Link to={`/articles/${article.article_id}`}>
-                  <button className="text-1xl m-3 mb-5 border p-2 text-center font-mono">
+                  <button className="rounded-md mb-4 border bg-black px-4 py-2 font-mono text-white hover:bg-blue-700">
                     Go to Article
                   </button>
                 </Link>

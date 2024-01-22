@@ -28,18 +28,18 @@ export default function Comments({ comments, setComments }) {
 
   return (
     <div>
-      <p className="p-3 pt-6 font-mono">Comments:</p>
+      <p className="pb-3 pt-6 font-mono">Comments:</p>
       <CommentAdder setComments={setComments} />
       {deleteFeedback ? <p>{deleteFeedback}</p> : ""}
       <ol>
         {comments &&
           comments.map((comment) => (
-            <section className="m-4 border" key={comment.comment_id}>
+            <section className="mt-4 border" key={comment.comment_id}>
               <div className="flex justify-between">
-                <p className="m-2 pb-3 pl-3 font-mono font-bold">
+                <p className="m-2 mt-4 pb-3 pl-3 font-mono font-bold">
                   {comment.author}
                 </p>
-                <p className="m-2 font-mono">
+                <p className="mt-4 font-mono m-2">
                   {comment.created_at.substring(0, 10)}
                 </p>
               </div>
@@ -47,11 +47,12 @@ export default function Comments({ comments, setComments }) {
               {user.username === comment.author ? (
                 <div>
                   <button
-                    className="rounded-md border px-3 py-1 font-mono "
+                    className="mb-3 ml-4 rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-blue-700"
                     onClick={() => {
                       handleDelete(comment.comment_id);
                     }}
                   >
+                    {" "}
                     Delete
                   </button>
                 </div>

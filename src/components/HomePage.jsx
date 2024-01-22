@@ -48,12 +48,11 @@ export default function HomePage() {
             </Link>
           ) : (
             <div className="flex flex-col justify-center text-center">
-              <section className="p-6">
+              <section className="mx-auto">
                 <p className="m-2 font-mono">Browse Topics:</p>
-
-                {topics.length > 0 && (
-                  <section className="flex justify-center">
-                    {topics.map((topic) => (
+                <section className="m-6 flex flex-wrap justify-center">
+                  {topics.length > 0 &&
+                    topics.map((topic) => (
                       <div key={topic.slug}>
                         <Link to={`/articles?topic=${topic.slug}`}>
                           <button className="m-2 rounded-md border px-7 py-3 font-mono shadow-md">
@@ -63,9 +62,8 @@ export default function HomePage() {
                         </Link>
                       </div>
                     ))}
-                  </section>
-                )}
-                <div className="m-4 mt-6 flex flex-col-reverse justify-end font-mono sm:flex-row hover:underline">
+                </section>
+                <div className="m-4 mt-6 flex flex-col-reverse justify-end font-mono hover:underline sm:flex-row">
                   <Link to="/articles">View All Articles</Link>
                 </div>
                 <section className="flex flex-wrap">
