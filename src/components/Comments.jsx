@@ -53,7 +53,7 @@ export default function Comments({ comments, setComments }) {
               {user.username === comment.author ? (
                 <div>
                   <button
-                    className="mb-3 ml-4 rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-blue-700"
+                    className="mb-3 ml-4 rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-red-700"
                     onClick={() => {
                       handleDelete(comment.comment_id);
                     }}

@@ -45,7 +45,7 @@ export default function CommentAdder({ setComments }) {
               value={newComment}
               onChange={(event) => setNewComment(event.target.value)}
             />
-            <button className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-blue-700">
+            <button className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-gray-600">
               Add
             </button>
             {feedbackComment ? <Error message={feedbackComment} /> : ""}
@@ -55,7 +55,7 @@ export default function CommentAdder({ setComments }) {
         <div className="text-center">
           <Error message="You are not logged in. Please log in to post a comment." />
           <Link to={"/profile"}>
-            <button className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-blue-700">
+            <button className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-gray-600">
               Login Here
             </button>
           </Link>

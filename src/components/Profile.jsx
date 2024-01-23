@@ -2,12 +2,15 @@ import { UserContext } from "../context/UserContext";
 import React, { useContext, useState, useEffect } from "react";
 import { getUserByUsername } from "../api";
 import { getUsers } from "../api";
+import Lottie from "lottie-react";
+import animationData from "../../assets/animations/circle-loader.json";
 
-export default function Profile() {
+export default function Profile({ isLoading, setIsLoading }) {
   const { user, setUser } = useContext(UserContext);
   const [existingUser, setExistingUser] = useState("");
   const [allUsers, setAllUsers] = useState([]);
 
+  console.log(isLoading);
   function handleLogin(event) {
     const selectedUsername = event.target.value;
     getUserByUsername(selectedUsername)
@@ -20,7 +23,9 @@ export default function Profile() {
   }
 
   useEffect(() => {
+    setIsLoading(true);
     getUsers().then((users) => {
+      setIsLoading(false);
       setAllUsers(users);
     });
   }, []);
@@ -31,6 +36,22 @@ export default function Profile() {
       name: "",
     });
     setExistingUser("");
+  }
+
+  if (isLoading) {
+    return (
+      <div className="m-8 mx-auto flex flex-col items-center">
+        <div className="mb-2 text-center">
+          <p className="font-mono">Loading...</p>
+        </div>
+        <div>
+          <Lottie
+            style={{ width: "50px", height: "50px" }}
+            animationData={animationData}
+          />
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -60,7 +81,7 @@ export default function Profile() {
               </optgroup>
             </select>
             <button
-              className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-blue-700"
+              className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-gray-600"
               onClick={() => {
                 handleLogin();
               }}
@@ -82,7 +103,7 @@ export default function Profile() {
           <p className="text-m mb-4 font-mono text-gray-500">{user.username}</p>
           <div>
             <button
-              className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-blue-700"
+              className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-gray-600"
               onClick={() => {
                 handleSignOut();
               }}

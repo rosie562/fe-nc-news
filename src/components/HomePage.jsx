@@ -42,7 +42,7 @@ export default function HomePage() {
         <div className="flex justify-center ">
           {!user.username ? (
             <Link to="/profile">
-              <button className="text-align: center m-6 rounded-md border p-5 font-mono shadow-md">
+              <button className="text-align: center m-6 rounded-md border p-5 font-mono shadow-md hover:bg-gray-200">
                 Log in to continue
               </button>
             </Link>
@@ -55,7 +55,7 @@ export default function HomePage() {
                     topics.map((topic) => (
                       <div key={topic.slug}>
                         <Link to={`/articles?topic=${topic.slug}`}>
-                          <button className="m-2 rounded-md border px-7 py-3 font-mono shadow-md">
+                          <button className="m-2 rounded-md border px-7 py-3 font-mono shadow-md hover:bg-gray-200">
                             {topic.slug.slice(0, 1).toUpperCase() +
                               topic.slug.slice(1)}
                           </button>
@@ -63,7 +63,7 @@ export default function HomePage() {
                       </div>
                     ))}
                 </section>
-                <div className="m-4 mt-6 flex flex-col-reverse justify-end font-mono hover:underline sm:flex-row">
+                <div className="m-4 mt-6 flex flex-col-reverse justify-end font-mono underline hover:underline sm:flex-row">
                   <Link to="/articles">View All Articles</Link>
                 </div>
                 <section className="flex flex-wrap">
@@ -73,7 +73,7 @@ export default function HomePage() {
                       key={article.article_id}
                     >
                       <Link to={`/articles/${article.article_id}`}>
-                        <div className="rounded-lg border-2 p-4 shadow-lg">
+                        <div className="rounded-lg border-2 p-4 shadow-lg hover:bg-gray-200">
                           <p className="p-2 font-mono text-lg">
                             {article.title}
                           </p>

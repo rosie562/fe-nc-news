@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { getArticleById, getArticleComments, patchArticle } from "../api";
 import Comments from "./Comments";
 import Error from "./Error";
+import Lottie from "lottie-react";
+import animationData from "../../assets/animations/circle-loader.json";
 
 export default function SingleArticle({
   setIsLoading,
@@ -61,8 +63,21 @@ export default function SingleArticle({
   }
 
   if (isLoading) {
-    return <p> Loading... </p>;
+    return (
+      <div className="m-8 mx-auto flex flex-col items-center">
+        <div className="mb-2 text-center">
+          <p className="font-mono">Loading...</p>
+        </div>
+        <div>
+          <Lottie
+            style={{ width: "50px", height: "50px" }}
+            animationData={animationData}
+          />
+        </div>
+      </div>
+    );
   }
+  
   if (isError) {
     return <Error message={isError} />;
   }
@@ -83,7 +98,7 @@ export default function SingleArticle({
         ""
       )}
       <div>
-        <button className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-blue-700 mb-4" onClick={() => vote(article.article_id)}> Vote
+        <button className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-gray-600 mb-4" onClick={() => vote(article.article_id)}> Vote
         </button>
         {feedbackVotes ? (
           <p className="mb-2 mt-3 font-mono"> {feedbackVotes}</p>

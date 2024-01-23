@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 import { useSearchParams } from "react-router-dom";
 import Error from "./Error";
+import Lottie from "lottie-react";
+import animationData from "../../assets/animations/circle-loader.json";
 
 export default function Articles({
   isLoading,
@@ -44,8 +46,21 @@ export default function Articles({
   }, [filters, topicQuery]);
 
   if (isLoading) {
-    return <p> Loading... </p>;
+    return (
+      <div className="m-8 mx-auto flex flex-col items-center">
+        <div className="mb-2 text-center">
+          <p className="font-mono">Loading...</p>
+        </div>
+        <div>
+          <Lottie
+            style={{ width: "50px", height: "50px" }}
+            animationData={animationData}
+          />
+        </div>
+      </div>
+    );
   }
+
   if (isError) {
     return <Error message={isError} />;
   }
@@ -136,7 +151,7 @@ export default function Articles({
               <ArticleCard article={article} />
               <div className="text-center">
                 <Link to={`/articles/${article.article_id}`}>
-                  <button className="rounded-md mb-4 border bg-black px-4 py-2 font-mono text-white hover:bg-blue-700">
+                  <button className="rounded-md mb-4 border bg-black px-4 py-2 font-mono text-white hover:bg-gray-600">
                     Go to Article
                   </button>
                 </Link>
