@@ -29,11 +29,13 @@ export default function Header() {
           Profile
         </Link>
       ) : (
-        <div className="text-align p-4 font-mono text-lg text-white">
-          Logged in as{" "}
-          <Link to="/profile" className=" font-extrabold underline">
-            {` ${user.username}`}
-          </Link>
+        <div className="flex text-end">
+          <div className="text-align p-4 font-mono text-lg text-white">
+            Logged in as{" "}
+            <Link to="/profile" className=" font-extrabold underline">
+              {` ${user.username}`}
+            </Link>
+          </div>
         </div>
       )}
     </nav>
