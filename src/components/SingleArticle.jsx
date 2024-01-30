@@ -59,6 +59,10 @@ export default function SingleArticle({
         setArticle((currArticle) => {
           return { ...currArticle, votes: currArticle.votes - 1 };
         });
+      }).finally(()=>{
+        setTimeout(() => {
+          setFeedbackVotes("");
+        }, 5000);
       });
   }
 
@@ -85,38 +89,50 @@ export default function SingleArticle({
   return (
     <div className="mx-auto max-w-2xl p-4">
       <p className="mb-4 mt-3 font-mono text-4xl font-bold">{article.title}</p>
-      <p className="mb-4 font-mono font-bold">{article.author}</p>
-      <p className="mb-4 font-mono">
-        {article.created_at ? article.created_at.substring(0, 10) : ""}
-      </p>
-
-      {article.votes ? (
-        <p className="pb-3 font-mono">
-          {article.votes} vote{article.votes > 1 ? "s" : ""}
+      <div className="mb-4 mt-3 flex items-center justify-between text-gray-500">
+        <p className="font-mono font-bold">{article.author}</p>
+        <p className="font-mono">
+          {article.created_at ? article.created_at.substring(0, 10) : ""}
         </p>
-      ) : (
-        ""
-      )}
-      <div>
-        <button className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-gray-600 mb-4" onClick={() => vote(article.article_id)}> Vote
+      </div>
+      {article.votes? (
+        <p className="mb-4 mt-3 font-mono text-gray-500">
+          {article.votes} vote{article.votes !== 1 ? "s" : ""}
+        </p>
+      ) : ''}
+
+      <div className="flex flex-wrap">
+        <button
+          className="mb-6 rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-gray-600"
+          onClick={() => vote(article.article_id)}
+        >
+          Vote
         </button>
         {feedbackVotes ? (
-          <p className="mb-2 mt-3 font-mono"> {feedbackVotes}</p>
+          <p className="mb-2 mt-2 justify-items-start font-mono pl-4">
+            {feedbackVotes}
+          </p>
         ) : (
           ""
         )}
-        <img
-          className="mb-4 p-3 pl-0"
-          src={article.article_img_url}
-          alt={article.title}
-          width="600px"
-        ></img>
-        <p className="mb-4 font-mono text-lg leading-relaxed">{article.body}</p>
+        <div className="flex flex-wrap items-center justify-center">
+          <img
+            className="mx-auto mb-10 mt-3 h-auto w-full max-w-screen-lg justify-center"
+            src={article.article_img_url}
+            alt={article.title}
+          />
+          <p className="mb-4 font-mono text-lg leading-relaxed">
+            {article.body}
+          </p>
+        </div>
       </div>
-      <p className="mb-4 mt-6 font-mono">{article.comment_count} comments</p>
+      <p className="mb-2 mt-6 font-mono">{article.comment_count} comments</p>
+      <hr className="my-8 border-t-2 border-gray-300" />
 
       {comments ? (
-        <Comments setComments={setComments} comments={comments} />
+        <div>
+          <Comments setComments={setComments} comments={comments} />
+        </div>
       ) : (
         ""
       )}

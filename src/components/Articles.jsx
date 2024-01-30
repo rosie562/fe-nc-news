@@ -112,7 +112,7 @@ export default function Articles({
               name="order"
               onChange={handleFilter}
             >
-              <optgroup label="order">
+              <optgroup label="Order By">
                 <option value="desc">Descending</option>
                 <option value="asc">Ascending</option>
               </optgroup>
@@ -133,7 +133,7 @@ export default function Articles({
                 name="topic"
                 onChange={handleFilter}
               >
-                <optgroup label="topic">
+                <optgroup label="Topic">
                   <option value="">All Topics</option>
                   <option value="coding">Coding</option>
                   <option value="football">Football</option>
@@ -147,16 +147,21 @@ export default function Articles({
         </div>
         <section className="grid grid-cols-1 gap-4 ">
           {articles.map((article) => (
-            <div className="mb-3 mt-3 rounded-md border" key={article.article_id}>
-              <ArticleCard article={article} />
-              <div className="text-center">
-                <Link to={`/articles/${article.article_id}`}>
-                  <button className="rounded-md mb-4 border bg-black px-4 py-2 font-mono text-white hover:bg-gray-600">
-                    Go to Article
-                  </button>
-                </Link>
+            <Link to={`/articles/${article.article_id}`}>
+              <div
+                className="mb-3 mt-3 rounded-md border p-3 shadow-md hover:bg-gray-100"
+                key={article.article_id}
+              >
+                <ArticleCard article={article} />
+                <div className="text-center">
+                  <Link to={`/articles/${article.article_id}`}>
+                    <button className="mb-4 rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-gray-600">
+                      Go to Article
+                    </button>
+                  </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </section>
       </section>

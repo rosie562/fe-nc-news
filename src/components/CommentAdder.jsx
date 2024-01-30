@@ -32,14 +32,14 @@ export default function CommentAdder({ setComments }) {
   }
 
   return (
-    <div className="rounded-md border p-3">
+    <div className= "mt-4 rounded-lg border p-6 shadow-md">
       {user.username ? (
         <form onSubmit={handleSubmit} className="flex flex-col">
           <label className="m-2 font-mono">
             Comment:
             <textarea
               placeholder="Enter your comment here"
-              className="mt-2 w-full border p-2"
+              className="mt-3 mb-2 w-full border p-2"
               id="newComment"
               multiline="true"
               value={newComment}

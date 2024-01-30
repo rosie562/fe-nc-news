@@ -65,6 +65,12 @@ export default function Profile({ isLoading, setIsLoading }) {
             Please log in as one of the users below:
           </p>
           <div className="flex flex-col items-center font-mono">
+            <label
+              htmlFor="users"
+              className="mb-2 text-center font-mono text-lg"
+            >
+              Select a user:
+            </label>
             <select
               className="mb-4 border p-2"
               id="users"
@@ -80,14 +86,14 @@ export default function Profile({ isLoading, setIsLoading }) {
                 ))}
               </optgroup>
             </select>
-            <button
+            {/* <button
               className="rounded-md border bg-black px-4 py-2 font-mono text-white hover:bg-gray-600"
               onClick={() => {
                 handleLogin();
               }}
             >
               Log In
-            </button>
+            </button> */}
           </div>
         </div>
       ) : (
